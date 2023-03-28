@@ -1,6 +1,6 @@
 /*
  * File: handle_flags.c
- * Author: TobiLight & ...
+ * Author: TobiLight & Prince460
  */
 
 #include "main.h"
@@ -8,43 +8,32 @@
 /**
  * handle_flags - Returns the flags for a given format specifier
  * @format: The format string
- * @start: The starting index of the format specifier
+ * @i: The starting index of the format specifier
  *
  * Return: the flags for the format specifier at the given index.
  */
 
-int handle_flags(const char *format, int *start)
+int handle_flags(const char *format, int *i)
 {
+	int j, curr_i;
 	int flags = 0;
-	int i;
+	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
 
-	for (i = *start; format[i] != '\0'; i++)
+	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
 	{
-		if (format[i] == '-')
-		{
-			flags |= F_MINUS;
-		}
-		else if (format[i] == '+')
-		{
-			flags |= F_PLUS;
-		}
-		else if (format[i] == '0')
-		{
-			flags |= F_ZERO;
-		}
-		else if (format[i] == '#')
-		{
-			flags |= F_HASH;
-		}
-		else if (format[i] == ' ')
-		{
-			flags |= F_SPACE;
-		}
-		else
-		{
+		for (j = 0; FLAGS_CH[j] != '\0'; j++)
+			if (format[curr_i] == FLAGS_CH[j])
+			{
+				flags |= FLAGS_ARR[j];
+				break;
+			}
+
+		if (FLAGS_CH[j] == 0)
 			break;
-		}
 	}
+
+	*i = curr_i - 1;
 
 	return (flags);
 }
