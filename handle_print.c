@@ -26,6 +26,7 @@ int print_handler(const char *fmt, int *ind, va_list list, char buffer[],
 		{'i', print_int}, {'d', print_int}, {'b', print_binary},
 		{'o', print_octal}, {'u', print_unsigned}, {'x', print_hexadecimal},
 		{'X', print_hexa_upper}, {'S', print_non_printable}, {'p', print_pointer},
+		{'r', print_reverse},
 		{'\0', NULL}};
 	for (i = 0; fmt_specifiers[i].fmt != '\0'; i++)
 		if (fmt[*ind] == fmt_specifiers[i].fmt)

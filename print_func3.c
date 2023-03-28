@@ -121,7 +121,7 @@ int print_reverse(va_list types, char buffer[],
 
 	if (str == NULL)
 	{
-		(void) precision
+		(void) precision;
 
 		str = ")Null(";
 	}
