@@ -17,7 +17,8 @@ int print_handler(const char *fmt, int *ind, va_list list, char buffer[],
 {
 	int i, len = 0, printed_chars = -1;
 	fmt_t fmt_specifiers[] = {
-		{'c', print_char}, {'s', print_string}, {'%', print_percent}, {'\0', NULL}};
+		{'c', print_char}, {'s', print_string}, {'%', print_percent},
+		{'i', print_int}, {'d', print_int}, {'\0', NULL}};
 	for (i = 0; fmt_specifiers[i].fmt != '\0'; i++)
 		if (fmt[*ind] == fmt_specifiers[i].fmt)
 			return (fmt_specifiers[i].func(list, buffer, flags, width,
