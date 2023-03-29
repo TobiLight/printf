@@ -24,6 +24,8 @@ int handle_width(const char *format, int *i, va_list list)
 		{
 			curr_i++;
 			width = va_arg(list, int);
+			if (width < 0)
+				width = -width;
 			break;
 		}
 		else
